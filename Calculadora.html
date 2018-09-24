@@ -57,7 +57,7 @@
 		background-color: black;
 		margin: 0 auto;
 		width: 600px;
-		height: 500px;
+		height: 450px;
 		padding: 25px;
 		border: 1px solid orange;
 		border-bottom-left-radius: 30px;
@@ -84,9 +84,24 @@
 		background-color: orange;
 	}
 
+	.input-header{
+		width: 400px;
+		padding: 0;
+		margin: 0;
+		border: 1px solid gray;
+		margin: 0 auto;
+		margin-bottom: -10px;
+		background-image: linear-gradient(to left, green, black);
+		color :white;
+		border: 1px solid white;
+		border-top-right-radius: 5px;
+		border-top-left-radius: 5px;
+	}
+
 	input{
+		padding-top: 0;
 		margin-bottom: 20px;
-		margin-top: 20px;
+		margin-top: 1px;
 		color: black;
 		box-shadow: 5px 5px 10px black;
 		text-align: center;
@@ -95,7 +110,8 @@
 		width: 400px;
 		height: 60px;
 		border: 1px solid white;
-		border-radius: 5px;
+		border-bottom-right-radius: 5px;
+		border-bottom-left-radius: 5px;
 	}
 
 	h5{
@@ -103,7 +119,7 @@
 	}
 
 	p{
-		margin-top: 50px;
+		margin-top: 30px;
 		color: white;
 		font-size: 16px;
 	}
@@ -114,8 +130,11 @@
 	<br>
 	<div id="header"><h5>Calculadora Del IVA</h5></div>
 	<div id="main">
+		<p class="input-header">Neto</p>
 		 <input id="x" name="x" placeholder="Valor neto" title= "Steevenson " oninput="SetIvaAndTotal()"><br>
+		 <p class="input-header">IVA</p>
 		 <input id="y" name="y" placeholder="IVA" oninput="SetNetoAndTotal()"><br>
+		 <p class="input-header">Total</p>
 		 <input id="z" name="z" placeholder="Valor total" oninput="SetNetoAndIva()"><br>
 		<button onclick="reset()">RESET</button>
 		<hr>
