@@ -143,47 +143,71 @@
 
 	<script>
 
+		let neto = document.getElementById("neto");
+		let iva = document.getElementById("iva");
+		let total = document.getElementById("total");
+		let resetBtn = document.getElementById("resetBtn");
+
+		neto.addEventListener("input", () => {
+		  SetIvaAndTotal();
+		});
+
+		iva.addEventListener("input", () => {
+		  SetNetoAndTotal();
+		});
+
+		total.addEventListener("input", () => {
+		  SetNetoAndIva();
+		});
+
+		resetBtn.addEventListener("click", () => {
+		  reset();
+		});
+
 		function SetIvaAndTotal() {
-			var a;
-			a = Number(document.getElementById("x").value);
-			checkType(document.getElementById("x").value);
-			var result = Math.floor((a * 0.19) * 100) / 100;
-			document.getElementById("y").value = isNaN(result)? "" : result;
-			document.getElementById("z").value = isNaN(a + result)? "" : a + result;
+		  let valorNeto =  Number(neto.value);
+		  checkType(neto.value);
+		  let result = Math.floor(valorNeto * 0.19 * 100) / 100;
+		  iva.value = isNaN(result) ? "" : result;
+		  total.value = isNaN(valorNeto + result) ? "" : valorNeto + result;
 		}
 
 		function SetNetoAndTotal() {
-			var a;
-			a = Number(document.getElementById("y").value);
-			checkType(document.getElementById("y").value);
-			var result = Math.floor((a / 0.19) * 100) / 100;
-			document.getElementById("x").value = isNaN(result)? "" : result;
-			var r = Math.floor((a + result)*100) / 100; 
-			document.getElementById("z").value = isNaN(r)? "" : r ;
+		  let valorIva;
+		  valorIva = Number(iva.value);
+		  checkType(iva.value);
+		  var result = Math.floor(valorIva / 0.19 * 100) / 100;
+		  neto.value = isNaN(result) ? "" : result;
+		  var r = Math.floor((valorIva + result) * 100) / 100;
+		  total.value = isNaN(r) ? "" : r;
 		}
 
 		function SetNetoAndIva() {
-			var a, reslt;
-			a = Number(document.getElementById("z").value);
-			checkType(document.getElementById("z").value);
-			var result = Math.floor((a / 1.19) * 100) / 100;
-			document.getElementById("x").value = isNaN(result)? "" : result; 
-			reslt = Math.floor((result * 0.19) * 100) / 100;
-			document.getElementById("y").value = isNaN(reslt)? "" : reslt; 
+		  let valorTotal, reslt;
+		  valorTotal = Number(total.value);
+		  checkType(total.value);
+		  var result = Math.floor(valorTotal / 1.19 * 100) / 100;
+		  neto.value = isNaN(result) ? "" : result;
+		  reslt = Math.floor(result * 0.19 * 100) / 100;
+		  iva.value = isNaN(reslt) ? "" : reslt;
 		}
 
-		function reset(){
-			document.getElementById("x").value = "";
-			document.getElementById("y").value = "";
-			document.getElementById("z").value = "";
+		function reset() {
+		  neto.value = "";
+		  iva.value = "";
+		  total.value = "";
 		}
 
-		function checkType(x){
-			if(isNaN(x)){
-				alert("Favor ingrese solo numeros!");
-				reset();
-			}
+		function checkType(x) {
+		  let errorMsg =  document.getElementById('error');
+		  if (isNaN(x)) {
+		   errorMsg.innerText = "Favor ingrese solo numeros!";
+		    reset();
+		  }else{
+		    errorMsg.innerText = "";
+		  }
 		}
+
 
 	</script>
 </body>
